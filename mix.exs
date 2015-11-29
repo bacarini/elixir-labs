@@ -3,10 +3,13 @@ defmodule Issues.Mixfile do
 
   def project do
     [app: :issues,
+     name: "Issues",
+     source_url: "https://github.com/bacarini/issues",
      version: "0.0.1",
      elixir: "~> 1.1",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     escript: escript_config,
      deps: deps]
   end
 
@@ -29,7 +32,13 @@ defmodule Issues.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.8.0"},
-      { :jsx,      "~> 2.8.0" }
+      { :jsx,      "~> 2.8.0" },
+      { :ex_doc,    github: "elixir-lang/ex_doc" },
+      {:earmark, ">= 0.0.0"}
     ]
+  end
+
+  defp escript_config do
+    [ main_module: Issues.CLI ]
   end
 end
